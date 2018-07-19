@@ -8,6 +8,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from './styles';
 
+import RepositoryItem from './components/RepositoryItem';
+
 export default class Organizations extends Component {
   static navigationOptions = {
     title: 'Repositórios',
@@ -31,9 +33,7 @@ export default class Organizations extends Component {
   }
 
   renderListItem = ({ item }) => (
-    <Text>
-      {item.full_name}
-    </Text>
+    <RepositoryItem respository={item} />
   );
 
   renderList = () => (
@@ -45,11 +45,13 @@ export default class Organizations extends Component {
   );
 
   render() {
+    const { loading } = this.state;
+
     return (
       <View style={styles.container}>
 
         {
-        this.state.loading
+        loading
           ? <ActivityIndicator style={styles.loading} />
           : this.renderList()
       }
