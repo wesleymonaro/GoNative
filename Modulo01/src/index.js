@@ -4,11 +4,13 @@ import {
   View,
 } from 'react-native';
 
+import Todo from './components/Todo';
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#333',
-    flexDirection: 'row',
+    flexDirection: 'column',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -43,11 +45,8 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.box} />
-        <View style={styles.box} />
-        <View style={styles.box} />
-        <View style={styles.box} />
-        <View style={styles.box} />
+        <Todo title="Fazer café" />
+        <Todo title="Estudar o GoNative" />
       </View>
     );
   }
