@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { NavigationActions } from 'react-navigation';
+import PropTypes from 'prop-types';
+
 import {
   View,
   Text,
@@ -11,37 +14,57 @@ import styles from './styles';
 
 // StatusBar.setBarStyle('light-content');
 
-const Welcome = () => (
-  <View style={styles.container}>
-    <StatusBar barStyle="light-content" />
 
-    <Text style={styles.title}>
-      Bem-vindo
-    </Text>
-    <Text style={styles.text}>
-      Para continuar, precisamos que você informe seu usuário no github
-    </Text>
+export default class Welcome extends Component {
+  static navigationOptions = {
+    header: null,
+  };
 
-    <View style={styles.form}>
-      <TextInput
-        style={styles.input}
-        autoCapitalize="none"
-        autoCorrect={false}
-        placeholder="Digite seu usuário"
-        underlineColorAndroid="transparent"
-      />
+  static propTypes = {
+    navigation: PropTypes.shape({
+      dispatch: PropTypes.func,
+    }).isRequired,
+  };
 
-      <TouchableOpacity style={styles.button} onPress={() => {}}>
-        <Text style={styles.buttonText}>
-          Prosseguir
+  signIn = () => {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'User' }),
+      ],
+    });
+
+    this.props.navigation.dispatch(resetAction);
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
+
+        <Text style={styles.title}>
+          Bem-vindo
         </Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-);
+        <Text style={styles.text}>
+          Para continuar, precisamos que você informe seu usuário no github
+        </Text>
 
-Welcome.navigationOptions = {
-  header: null,
-};
+        <View style={styles.form}>
+          <TextInput
+            style={styles.input}
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder="Digite seu usuário"
+            underlineColorAndroid="transparent"
+          />
 
-export default Welcome;
+          <TouchableOpacity style={styles.button} onPress={this.signIn}>
+            <Text style={styles.buttonText}>
+              Prosseguir
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+}
