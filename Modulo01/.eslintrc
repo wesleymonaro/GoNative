@@ -37,7 +37,7 @@
     "import/resolver": {
       "babel-module": {}
     }
-  },"
+  },
   "globals": {
     "__DEV__": true
   }
