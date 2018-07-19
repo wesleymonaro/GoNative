@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Platform} from 'react-native';
 import {
   StyleSheet,
   View,
@@ -25,6 +26,16 @@ const styles = StyleSheet.create({
       { rotateZ: '20deg' },
     ],
   },
+  text: {
+    ...Platform.select({
+      ios: {
+        //para ios
+      },
+      android: {
+        //para android
+      }
+    })
+  }
 });
 
 
