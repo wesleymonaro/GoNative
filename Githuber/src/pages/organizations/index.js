@@ -3,7 +3,6 @@ import {
   View,
   AsyncStorage,
   ActivityIndicator,
-  Text,
   FlatList,
 } from 'react-native';
 
@@ -12,6 +11,7 @@ import api from 'services/api';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import styles from './styles';
+import OrganizationItem from './components/OrganizationItem';
 
 export default class Organizations extends Component {
   static navigationOptions = {
@@ -35,17 +35,15 @@ export default class Organizations extends Component {
     this.setState({ data: response.data, loading: false });
   }
 
-  renderListItem = ({ item }) => (
-    <Text>
-      {item.login}
-    </Text>
-  );
+  renderListItem = ({ item }) => <OrganizationItem organization={item} />;
 
   renderList = () => (
     <FlatList
       data={this.state.data}
       keyExtractor={item => String(item.id)}
       renderItem={this.renderListItem}
+      numColumns={2}
+      columnWrapperStyle={styles.columnContainer}
     />
   );
 
