@@ -1,12 +1,20 @@
 import React from 'react';
 import {
-  View, Text, TextInput, TouchableOpacity,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 
 import styles from './styles';
 
+// StatusBar.setBarStyle('light-content');
+
 const Welcome = () => (
   <View style={styles.container}>
+    <StatusBar barStyle="light-content" />
+
     <Text style={styles.title}>
       Bem-vindo
     </Text>
