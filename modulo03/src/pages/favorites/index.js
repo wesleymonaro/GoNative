@@ -6,4 +6,7 @@ const Favorites = () => (
   <View style={styles.container} />
 );
 
+Favorites.navigationOptions = {
+  title: 'Meus Favoritos',
+};
 export default Favorites;
