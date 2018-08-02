@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   View,
   StatusBar,
@@ -11,53 +11,59 @@ import {
 
 import styles from './styles';
 
-const Main = () => (
-  <SafeAreaView style={styles.container}>
-    <StatusBar barStyle="light-content" />
+export default class Main extends Component {
+  static navigationOptions = {
+    header: null,
+  };
 
-    <View style={styles.content}>
+  navigateToFavorites = () => {
+    this.props.navigation.navigate('Favorites');
+  }
 
-      <Text style={styles.title}>
-        GitMark
-      </Text>
-      <Text style={styles.description}>
-        Comece adicoinando alguns repositórios aos seus favoritos
-      </Text>
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+        <StatusBar barStyle="light-content" />
 
-      <View style={styles.form}>
-        <TextInput
-          style={styles.input}
-          autoCapitalize="none"
-          autoCorrect={false}
-          placeholder="usuário/repositório"
-          underlineColorAndroid="transparent"
-        />
+        <View style={styles.content}>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {}}
-          activeOpacity={0.6}
-        >
-          <Text style={styles.buttonText}>
-            Adicionar aos favoritos
+          <Text style={styles.title}>
+            GitMark
           </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+          <Text style={styles.description}>
+            Comece adicoinando alguns repositórios aos seus favoritos
+          </Text>
 
-    <View style={styles.footer}>
-      <TouchableOpacity onPress={() => {}}>
-        <Text style={styles.footerLink}>
-          Meus favoritos (3)
-        </Text>
-      </TouchableOpacity>
-    </View>
+          <View style={styles.form}>
+            <TextInput
+              style={styles.input}
+              autoCapitalize="none"
+              autoCorrect={false}
+              placeholder="usuário/repositório"
+              underlineColorAndroid="transparent"
+            />
 
-  </SafeAreaView>
-);
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {}}
+              activeOpacity={0.6}
+            >
+              <Text style={styles.buttonText}>
+                Adicionar aos favoritos
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
 
-Main.navigationOptions = {
-  header: null,
-};
+        <View style={styles.footer}>
+          <TouchableOpacity onPress={this.navigateToFavorites}>
+            <Text style={styles.footerLink}>
+              Meus favoritos (3)
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-export default Main;
+      </SafeAreaView>
+    );
+  }
+}
