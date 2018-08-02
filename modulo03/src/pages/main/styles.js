@@ -30,6 +30,15 @@ const styles = StyleSheet.create({
     marginTop: metrics.baseMargin * 2,
     alignSelf: 'stretch',
   },
+  error: {
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    color: colors.danger,
+    marginBottom: metrics.baseMargin,
+  },
+  loading: {
+    color: colors.darkTransparent,
+  },
   input: {
     height: 50,
     backgroundColor: colors.white,

@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   SafeAreaView,
+  ActivityIndicator,
 
 } from 'react-native';
 
@@ -27,7 +28,10 @@ class Main extends Component {
       navigate: PropTypes.func,
     }).isRequired,
     addFavoriteRequest: PropTypes.func.isRequired,
-    favoritesCount: PropTypes.number.isRequired,
+    favorites: PropTypes.shape({
+      data: PropTypes.arrayOf(PropTypes.shape),
+      errorOnAdd: PropTypes.oneOfType([null, PropTypes.string]),
+    }).isRequired,
   }
 
   state = {
@@ -61,6 +65,13 @@ class Main extends Component {
           </Text>
 
           <View style={styles.form}>
+
+            { !!this.props.favorites.errorOnAdd && (
+              <Text style={styles.error}>
+                {this.props.favorites.errorOnAdd}
+              </Text>
+            )}
+
             <TextInput
               style={styles.input}
               autoCapitalize="none"
@@ -76,9 +87,14 @@ class Main extends Component {
               onPress={this.addRepository}
               activeOpacity={0.6}
             >
-              <Text style={styles.buttonText}>
+              {this.props.favorites.loading
+                ? <ActivityIndicator size="small" color={styles.loading.color} />
+                : (
+                  <Text style={styles.buttonText}>
                 Adicionar aos favoritos
-              </Text>
+                  </Text>
+                )
+        }
             </TouchableOpacity>
           </View>
         </View>
@@ -86,9 +102,9 @@ class Main extends Component {
         <View style={styles.footer}>
           <TouchableOpacity onPress={this.navigateToFavorites}>
             <Text style={styles.footerLink}>
-              Meus favoritos (
-              {this.props.favoritesCount}
-              )
+                Meus favoritos (
+              {this.props.favorites.data.length}
+                )
             </Text>
           </TouchableOpacity>
         </View>
@@ -99,7 +115,7 @@ class Main extends Component {
 }
 
 const mapStateToProps = state => ({
-  favoritesCount: state.favorites.length,
+  favorites: state.favorites,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(FavoriteActions, dispatch);
