@@ -3,7 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import sagas from './sagas';
 
-import reducers from './reducers';
+import reducers from './ducks';
 
 const sagaMonitor = __DEV__ ? console.tron.createSagaMonitor() : null;
 const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
