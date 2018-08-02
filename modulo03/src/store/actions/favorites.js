@@ -1,13 +1,13 @@
-export const addFavorite = text => ({
-  type: 'ADD_FAVORITE',
+export const addFavoriteRequest = repoName => ({
+  type: 'ADD_FAVORITE_REQUEST',
   payload: {
-    text,
+    repoName,
   },
 });
 
-export const removeFavorite = id => ({
-  type: 'REMOVE_FAVORITE',
-  payload: {
-    id,
-  },
-});
+// export const removeFavorite = id => ({
+//   type: 'REMOVE_FAVORITE',
+//   payload: {
+//     id,
+//   },
+// });
