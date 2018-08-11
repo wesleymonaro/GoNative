@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Provider } from 'react-redux';
 
 import 'config/ReactotronConfig';
 import store from 'store';
 
+import Player from 'components/player';
 import Routes from './routes';
+
 
 const App = () => (
   <Provider store={store}>
-    <Routes />
+    <Fragment>
+      <Routes />
+      <Player />
+    </Fragment>
   </Provider>
 );
 
