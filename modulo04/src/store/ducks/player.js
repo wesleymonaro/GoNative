@@ -6,6 +6,8 @@ export const Types = {
   SET_SONG_FAILURE: 'player/SET_SONG_FAILURE',
   PLAY: 'player/PLAY',
   PAUSE: 'player/PAUSE',
+  NEXT: 'player/NEXT',
+  PREVIOUS: 'player/PREVIOUS',
 };
 
 const initialState = Immutable({
@@ -59,5 +61,13 @@ export const Creators = {
 
   pause: () => ({
     type: Types.PAUSE,
+  }),
+
+  next: () => ({
+    type: Types.NEXT,
+  }),
+
+  previous: () => ({
+    type: Types.PREVIOUS,
   }),
 };
