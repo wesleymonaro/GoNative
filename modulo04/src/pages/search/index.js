@@ -7,7 +7,7 @@ import { Creators as SearchActions } from 'store/ducks/search';
 import {
   View, TextInput, FlatList, ActivityIndicator,
 } from 'react-native';
-import SongItem from 'components/songItem';
+import SongList from 'components/songList';
 import { debounce } from 'lodash';
 
 import styles from './styles';
@@ -61,10 +61,8 @@ class Search extends Component {
 
           {this.props.search.loading && <ActivityIndicator size="small" color="#999" style={styles.loading} />}
 
-          <FlatList
+          <SongList
             data={this.props.search.data}
-            keyExtractor={song => String(song.id)}
-            renderItem={({ item }) => <SongItem song={item} />}
           />
         </View>
       </View>
