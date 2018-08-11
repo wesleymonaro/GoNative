@@ -265,6 +265,13 @@
           "file": "https://s3-sa-east-1.amazonaws.com/gonative/5.mp3"
         }
       ]
+    },
+    {
+      "name": "Wesley",
+      "username": "monaro",
+      "email": "wesleymonaro@hotmail.com",
+      "password": "123456",
+      "id": 7
     }
   ],
   "songs": [

@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
   headerRight: {
     marginRight: metrics.basePadding,
   },
+  loading: {
+    marginTop: metrics.basePadding,
+  },
 });
 
 export default styles;
