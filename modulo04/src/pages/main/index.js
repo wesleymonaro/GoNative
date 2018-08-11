@@ -1,8 +1,9 @@
 import React from 'react';
 import {
- View, StatusBar, TouchableOpacity, FlatList 
+  View, StatusBar, TouchableOpacity, FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import PropTypes from 'prop-types';
 
 import AlbumItem from './components/albumItem';
 
@@ -277,14 +278,16 @@ const albums = [
   },
 ];
 
-const Main = () => (
+const Main = ({ navigation }) => (
   <View style={styles.container}>
     <StatusBar barStyle="light-content" />
 
     <FlatList
       data={albums}
       keyExtractor={album => String(album.id)}
-      renderItem={({ item }) => <AlbumItem album={item} />}
+      renderItem={({ item }) => (
+        <AlbumItem album={item} onPress={() => navigation.navigate('Album', { album: item })} />
+      )}
     />
   </View>
 );
@@ -297,5 +300,11 @@ Main.navigationOptions = ({ navigation }) => ({
     </TouchableOpacity>
   ),
 });
+
+Main.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
+};
 
 export default Main;
